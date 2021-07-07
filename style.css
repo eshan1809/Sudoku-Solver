@@ -44,6 +44,28 @@
     display:block;;
 }
 
+.difficulty{
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.difficulty-level{
+    margin: 10px 10px 0px 10px;
+}
+
+.footer-icon {
+    padding: 12px;
+}
+.footer-link{
+    color: #202020;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #EAF6F6;
+}
+
 .lsb{
     border-left: black 2px solid;
 }

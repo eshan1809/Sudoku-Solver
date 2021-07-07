@@ -45,7 +45,9 @@ function resetColor() {
 
 var board = [[], [], [], [], [], [], [], [], []]
 
-let generate = document.getElementById('generate-sudoku')
+let generate_easy = document.getElementById('generate-sudoku-easy')
+let generate_medium = document.getElementById('generate-sudoku-medium')
+let generate_hard = document.getElementById('generate-sudoku-hard')
 let solve = document.getElementById('solve')
 
 console.log(arr)
@@ -61,7 +63,7 @@ function changeBoard(board) {
 }
 
 
-generate.onclick = function () {
+generate_easy.onclick = function () {
     var xhrRequest = new XMLHttpRequest()
     xhrRequest.onload = function () {
         var response = JSON.parse(xhrRequest.response)
@@ -75,6 +77,40 @@ generate.onclick = function () {
         changeBoard(board)
     }
     xhrRequest.open('get', 'https://sugoku.herokuapp.com/board?difficulty=easy')
+    xhrRequest.send()
+}
+
+generate_medium.onclick = function () {
+    var xhrRequest = new XMLHttpRequest()
+    xhrRequest.onload = function () {
+        var response = JSON.parse(xhrRequest.response)
+        console.log(response)
+        initializeTemp(temp)
+        resetColor()
+
+        board = response.board
+        setTemp(board, temp)
+        setColor(temp)
+        changeBoard(board)
+    }
+    xhrRequest.open('get', 'https://sugoku.herokuapp.com/board?difficulty=medium')
+    xhrRequest.send()
+}
+
+generate_hard.onclick = function () {
+    var xhrRequest = new XMLHttpRequest()
+    xhrRequest.onload = function () {
+        var response = JSON.parse(xhrRequest.response)
+        console.log(response)
+        initializeTemp(temp)
+        resetColor()
+
+        board = response.board
+        setTemp(board, temp)
+        setColor(temp)
+        changeBoard(board)
+    }
+    xhrRequest.open('get', 'https://sugoku.herokuapp.com/board?difficulty=hard')
     xhrRequest.send()
 }
 

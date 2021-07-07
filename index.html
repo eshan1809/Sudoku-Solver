@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <script defer src="script.js"></script>
 </head>
 
@@ -19,7 +20,12 @@
     </nav>
     <br>
     <div id="buttons">
-        <button type="button" class="btn btn-outline-primary" id="generate-sudoku">Generate New Puzzle</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="difficulty">
+            <h1 style="color : #E15D44">Generate New Puzzle</h1>
+            <button type="button" class="difficulty-level btn btn-outline-primary" id="generate-sudoku-easy">Easy</button>&nbsp;
+            <button type="button" class="difficulty-level btn btn-outline-warning" id="generate-sudoku-medium">Medium</button>&nbsp;
+            <button type="button" class="difficulty-level btn btn-outline-danger" id="generate-sudoku-hard">Hard</button>&nbsp;
+        </div>
     </div>
     <div id="container">
         <div class="lsb tsb" id="0"></div>
@@ -110,7 +116,10 @@
     </div>
     <br>
     <footer id="footer">
-    <p>© Copyright 2021 Eshan Bhatt🚩</p>
+        <a class = "footer-link" href="https://github.com/eshan1809"><i class="footer-icon fab fa-github"></i></a>
+        <a class = "footer-link" href="https://www.linkedin.com/in/bhatt-eshan/"><i class="footer-icon fab fa-linkedin"></i></a>
+        <a class = "footer-link" href="mailto:eshan18.09@gmail.com"><i class="footer-icon fas fa-envelope"></i></a>
+        <p>© Copyright 2021 Eshan Bhatt🚩</p>
   </footer>
 </body>
 </html>
