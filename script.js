@@ -45,7 +45,7 @@ function resetColor() {
 
 var board = [[], [], [], [], [], [], [], [], []]
 
-let button = document.getElementById('generate-sudoku')
+let generate = document.getElementById('generate-sudoku')
 let solve = document.getElementById('solve')
 
 console.log(arr)
@@ -61,7 +61,7 @@ function changeBoard(board) {
 }
 
 
-button.onclick = function () {
+generate.onclick = function () {
     var xhrRequest = new XMLHttpRequest()
     xhrRequest.onload = function () {
         var response = JSON.parse(xhrRequest.response)
