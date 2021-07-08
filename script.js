@@ -25,11 +25,11 @@ function setTemp(board, temp) {
     }
 }
 
-function setColor(temp) {
+function setColor(temp, colour) {
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 9; j++) {
             if (temp[i][j] == true) {
-                arr[i][j].style.color = "blue";
+                arr[i][j].style.color = colour;
             }
         }
     }
@@ -64,6 +64,7 @@ function changeBoard(board) {
 
 
 generate_easy.onclick = function () {
+    
     var xhrRequest = new XMLHttpRequest()
     xhrRequest.onload = function () {
         var response = JSON.parse(xhrRequest.response)
@@ -73,7 +74,7 @@ generate_easy.onclick = function () {
 
         board = response.board
         setTemp(board, temp)
-        setColor(temp)
+        setColor(temp, "blue")
         changeBoard(board)
     }
     xhrRequest.open('get', 'https://sugoku.herokuapp.com/board?difficulty=easy')
@@ -90,7 +91,7 @@ generate_medium.onclick = function () {
 
         board = response.board
         setTemp(board, temp)
-        setColor(temp)
+        setColor(temp, "#F6BE00")
         changeBoard(board)
     }
     xhrRequest.open('get', 'https://sugoku.herokuapp.com/board?difficulty=medium')
@@ -107,51 +108,50 @@ generate_hard.onclick = function () {
 
         board = response.board
         setTemp(board, temp)
-        setColor(temp)
+        setColor(temp, "red")
         changeBoard(board)
     }
     xhrRequest.open('get', 'https://sugoku.herokuapp.com/board?difficulty=hard')
     xhrRequest.send()
 }
 
-function isSafe(board,r,c,no){
+function isSafe(board, r, c, no){
 
-    for(var i=0;i<9;i++){
-        if(board[i][c]==no || board[r][i]==no){
+    for(var i = 0; i < 9; i++){
+        if(board[i][c] == no || board[r][i] == no){
             return false;
         }
     }
-    var sx = r - r%3;
-    var sy = c - c%3;
+    var sx = r - r % 3;
+    var sy = c - c % 3;
 
-    for(var x=sx;x<sx+3;x++){
-        for(var y=sy;y<sy+3;y++){
-            if(board[x][y]==no){
+    for(var x = sx; x < sx + 3; x++){
+        for(var y = sy; y < sy + 3; y++){
+            if(board[x][y] == no){
                 return false;
             }
         }
     }
-
     return true;
 }
 
 function solveSudokuHelper(board,r,c){
 
-    if(r==9){
+    if(r == 9){
         changeBoard(board);
         return true;
     }
-    if(c==9){
-        return solveSudokuHelper(board,r+1,0);
+    if(c == 9){
+        return solveSudokuHelper(board, r + 1, 0);
     }
-    if(board[r][c]!=0){
-        return solveSudokuHelper(board,r,c+1);
+    if(board[r][c] != 0){
+        return solveSudokuHelper(board, r, c + 1);
     }
-    for(var i=1;i<=9;i++){
-        if(isSafe(board,r,c,i)){
+    for(var i = 1; i <= 9; i++){
+        if(isSafe(board, r, c, i)){
             board[r][c] = i;
-            var success = solveSudokuHelper(board,r,c+1);
-            if(success==true){
+            var success = solveSudokuHelper(board, r, c + 1);
+            if(success == true){
                 return true;
             }
             board[r][c] = 0;
@@ -161,7 +161,7 @@ function solveSudokuHelper(board,r,c){
 }
 
 function solveSudoku(board) {
-    solveSudokuHelper(board,0,0);
+    solveSudokuHelper(board, 0, 0);
 }
 
 solve.onclick = function () {
