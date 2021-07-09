@@ -48,6 +48,7 @@ var board = [[], [], [], [], [], [], [], [], []]
 let generate_easy = document.getElementById('generate-sudoku-easy')
 let generate_medium = document.getElementById('generate-sudoku-medium')
 let generate_hard = document.getElementById('generate-sudoku-hard')
+let generate_random = document.getElementById('generate-sudoku-random')
 let solve = document.getElementById('solve')
 
 console.log(arr)
@@ -112,6 +113,23 @@ generate_hard.onclick = function () {
         changeBoard(board)
     }
     xhrRequest.open('get', 'https://sugoku.herokuapp.com/board?difficulty=hard')
+    xhrRequest.send()
+}
+
+generate_random.onclick = function () {
+    var xhrRequest = new XMLHttpRequest()
+    xhrRequest.onload = function () {
+        var response = JSON.parse(xhrRequest.response)
+        console.log(response)
+        initializeTemp(temp)
+        resetColor()
+
+        board = response.board
+        setTemp(board, temp)
+        setColor(temp, "black")
+        changeBoard(board)
+    }
+    xhrRequest.open('get', 'https://sugoku.herokuapp.com/board?difficulty=random')
     xhrRequest.send()
 }
 
